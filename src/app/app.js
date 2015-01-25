@@ -7,7 +7,7 @@ angular.module('ngGulp', [
         $routeProvider
             .when('/todo', {
                 controller: 'TodoCtrl',
-                templateUrl: 'todo/todo.html'
+                templateUrl: 'todo/view/todo.html'
             })
             .otherwise({
                 redirectTo: '/todo'

@@ -15,10 +15,13 @@ var gulp = require('gulp'),
     bower = require('./bower'),
     tar = require('gulp-tar'),
     gzip = require('gulp-gzip'),
-    isWatching = false;
+    isWatching = false,
+    proxy = require('proxy-middleware'),
+    url = require('url'),
+    connect = require('gulp-connect');
 
-
-
+var proxyOptions = url.parse('http://demo-venkatvp.rhcloud.com/services');
+proxyOptions.route = '/services';
 
 
 var htmlminOpts = {
@@ -176,10 +179,19 @@ gulp.task('release', ['dist'], function() {
 /**
  * Static file server
  */
-gulp.task('statics', g.serve({
-    port: 3000,
-    root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components']
-}));
+gulp.task('statics', function() {
+    connect.server({
+        root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components'],
+        port: 3000,
+        livereload: true,
+        middleware: function() {
+            return [(function() {
+                return proxy(proxyOptions);
+            })()];
+        }
+    });
+});
+
 
 /**
  * Watch
@@ -188,23 +200,10 @@ gulp.task('serve', ['watch']);
 gulp.task('watch', ['statics', 'default'], function() {
     isWatching = true;
     // Initiate livereload server:
-    g.livereload.listen();
-    gulp.watch('./src/app/**/*.js', ['jshint']).on('change', function(evt) {
-        if (evt.type !== 'changed') {
-            gulp.start('index');
-        } else {
-            g.livereload.changed(evt);
-        }
-    });
+    gulp.watch('./src/app/**/*.js', ['jshint']);
     gulp.watch('./src/app/index.html', ['index']);
     gulp.watch(['./src/app/**/*.html', '!./src/app/index.html'], ['templates']);
-    gulp.watch(['./src/app/**/*.less'], ['csslint']).on('change', function(evt) {
-        if (evt.type !== 'changed') {
-            gulp.start('index');
-        } else {
-            g.livereload.changed(evt);
-        }
-    });
+    gulp.watch(['./src/app/**/*.less'], ['csslint']);
 });
 
 /**
