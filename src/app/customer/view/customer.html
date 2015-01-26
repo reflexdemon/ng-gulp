@@ -1,0 +1,21 @@
+<h3>Customers</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="customer in customers">
+        <td>{{customer.id}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.age}}</td>
+        <td>
+            <button type="button" class="btn btn-default btn-lg edit" data-id="{{customer.id}}">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </button>
+        </td>
+    </tr>
+</table>
