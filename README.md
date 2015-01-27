@@ -1,6 +1,14 @@
 ng-gulp
 ============
 
+## Onetime Setup
+```bash
+npm install -g gulp
+npm install
+bower install
+```
+
+
 ## Development
 
 To start developing in the project run:
