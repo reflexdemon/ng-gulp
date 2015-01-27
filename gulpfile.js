@@ -18,10 +18,17 @@ var gulp = require('gulp'),
     isWatching = false,
     proxy = require('proxy-middleware'),
     url = require('url'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    _ = require('lodash');
 
-var proxyOptions = url.parse('http://demo-venkatvp.rhcloud.com/services');
-proxyOptions.route = '/services';
+//Configure your proxy for integrating with services
+var proxyOptions = _.extend(url.parse('http://demo-venkatvp.rhcloud.com/services'), {
+        route: '/services',
+        headers: {
+            custom: 'My Custom Header'
+        }
+    });
+
 
 
 var htmlminOpts = {
