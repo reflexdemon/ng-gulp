@@ -23,11 +23,11 @@ var gulp = require('gulp'),
 
 //Configure your proxy for integrating with services
 var proxyOptions = _.extend(url.parse('http://demo-venkatvp.rhcloud.com/services'), {
-        route: '/services',
-        headers: {
-            custom: 'My Custom Header'
-        }
-    });
+    route: '/services',
+    headers: {
+        custom: 'My Custom Header'
+    }
+});
 
 
 
@@ -347,7 +347,7 @@ function dist(ext, name, opt) {
  */
 function livereload() {
     return lazypipe()
-        .pipe(isWatching ? g.livereload : noop)();
+        .pipe(isWatching ? connect.reload : noop)();
 }
 
 /**
