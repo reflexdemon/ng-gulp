@@ -1,0 +1,26 @@
+<h3>Customers</h3>
+<div ng-if="status" class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Message:</strong>{{status}}
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="Id">Id</label>
+        <input type="text" class="form-control" placeholder="ID" ng-model="customer.id" readonly>
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name" ng-model="customer.name">
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" placeholder="Age" ng-model="customer.age">
+    </div>
+
+    <button class="btn btn-default" ng-click="back()">Cancel</button>
+    <button class="btn btn-primary" ng-click="updateCustomer()"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save</button>
+    <button class="btn btn-danger" ng-if="customer.id" ng-click="delete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+
+</form>

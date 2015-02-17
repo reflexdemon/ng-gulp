@@ -5,12 +5,15 @@
     <meta charset="utf-8" />
     <title>Angular Gulp Demo</title>
     <!-- inject:vendor:css -->
+    <link rel="stylesheet" href="/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="/ngDialog/css/ngDialog.css">
+    <link rel="stylesheet" href="/ngDialog/css/ngDialog-theme-default.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/customer/customer.css">
     <link rel="stylesheet" href="/css/todo/todo.css">
+    <link rel="stylesheet" href="/css/customer/customer.css">
     <!-- endinject -->
 </head>
 
@@ -22,14 +25,17 @@
     <script src="/angular-route/angular-route.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/angular-resource/angular-resource.js"></script>
+    <script src="/angular-ui-grid/ui-grid.js"></script>
+    <script src="/ngDialog/js/ngDialog.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
     <script src="/todo/todo.js"></script>
     <script src="/todo/controller/todo-controller.js"></script>
     <script src="/customer/customer.js"></script>
-    <script src="/customer/service/customer_service.js"></script>
+    <script src="/customer/controller/customer-edit-controller.js"></script>
     <script src="/customer/controller/customer-controller.js"></script>
+    <script src="/customer/service/customer_service.js"></script>
     <script src="/app.js"></script>
     <script src="/ng-gulp-templates.js"></script>
     <!-- endinject -->

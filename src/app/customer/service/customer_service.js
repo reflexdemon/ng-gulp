@@ -1,48 +1,42 @@
 angular
-    .module('ngGulp.customer').service('CustomerService', function($resource) {
-      'use strict';
-      var console = console || {};
-      // Default methods vs HTTP methods
-      //     'get' --> 'GET'
-      //     'save' --> 'POST'
-      //     'query' --> 'GET' and returns an array
-      //     'remove' --> 'DELETE'
-      //     'delete' --> 'DELETE'
+  .module('ngGulp.customer').service('CustomerService', ['$http',
+      function($http) {
+          'use strict';
 
-      //Initialize resource
-      var Customer = $resource('/services/customer/:customerId', {
-          customerId: '@id'
-      }, {
-          'update': {
-              method: 'PUT'
-          }
-      });
+          //REST service abstraction
 
-      //simply returns the customers list
-      this.list = function() {
-          return Customer.query();
-      };
+          //RESTful webservice base URL
+          var urlBase = '/services/customer';
 
-      //Fetch one customer
-      this.get = function(id) {
-          return Customer.get({
-              customerId: id
-          });
-      };
+          //Fetch all customers
+          this.getCustomers = function() {
+              return $http.get(urlBase);
+          };
 
-      //Update data
-      this.edit = function(customer) {
-          Customer.update(customer);
-      };
+          //Fetch customer by ID
+          this.getCustomer = function(id) {
+              return $http.get(urlBase + '/' + id);
+          };
 
-      //Add data
-      this.add = function(customer) {
-          Customer.save(customer);
-      };
+          //Insert new customer
+          this.insertCustomer = function(cust) {
+              return $http.post(urlBase, cust);
+          };
 
-      //Delete data
-      this.delete = function(id) {
-          Customer.delete({customerId : id});
-      };
+          //Update Customer
+          this.updateCustomer = function(cust) {
+              return $http.put(urlBase + '/' + cust.id, cust);
+          };
 
-  });
+          //Abstracts save for insert vs update
+          this.save = function(cust) {
+            var operation = cust.id ? this.updateCustomer : this.insertCustomer;
+            return operation(cust);
+          };
+
+          //Delete customer record
+          this.deleteCustomer = function(id) {
+              return $http.delete(urlBase + '/' + id);
+          };
+      }
+  ]);
