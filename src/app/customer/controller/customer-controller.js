@@ -20,7 +20,7 @@ angular
             maxWidth: 200
         }, {
             name: 'Action',
-            cellTemplate: '<button class="btn btn-primary" ng-click="grid.appScope.edit(this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>',
+            cellTemplate: '<button class="btn btn-primary" ng-click="grid.appScope.edit(this)"><i class="fa fa-pencil"></i></button>',
             width: '20%',
             maxWidth: 200
         }];
