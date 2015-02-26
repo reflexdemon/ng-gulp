@@ -3,7 +3,7 @@ ng-gulp
 
 ## Onetime Setup
 ```bash
-npm install -g gulp
+npm install -g gulp bower
 npm install
 bower install
 ```
