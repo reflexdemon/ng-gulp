@@ -2,10 +2,16 @@ ng-gulp
 ============
 
 ## Onetime Setup
+If you dont have `gulp` and `bower` installed globally before please do this.
+
 ```bash
-npm install -g gulp bower
+npm install -g gulp bower 
+```
+
+This is required to be done if the `package.json` is updated antime.
+
+```bash
 npm install
-bower install
 ```
 
 
