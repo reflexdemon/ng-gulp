@@ -23,21 +23,37 @@ var gulp = require('gulp'),
     _ = require('lodash');
 
 //Configure your proxy for integrating with services
-var proxyOptions = _.extend(url.parse('http://demo-venkatvp.rhcloud.com/services'), {
-    route: '/services',
-    headers: {
-        custom: 'My Custom Header'
-    }
-});
-
-
-
-var htmlminOpts = {
-    removeComments: true,
-    collapseWhitespace: true,
-    removeEmptyAttributes: false,
-    collapseBooleanAttributes: true,
-    removeRedundantAttributes: true
+//
+var configuration = {
+    proxyOptions: _.extend(url.parse('http://demo-venkatvp.rhcloud.com/services'), {
+        route: '/services',
+        headers: {
+            custom: 'My Custom Header'
+        }
+    }),
+    htmlminOpts: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeEmptyAttributes: false,
+        collapseBooleanAttributes: true,
+        removeRedundantAttributes: true
+    },
+    distBowerFileList: [
+        './bower_components/**/*.png',
+        './bower_components/**/*.gif',
+        './bower_components/**/*.svg',
+        './bower_components/**/*.jpg',
+        './bower_components/angular-ui-grid/**/*.eot',
+        './bower_components/angular-ui-grid/**/*.ttf',
+        './bower_components/angular-ui-grid/**/*.woff',
+        './bower_components/angular-ui-grid/**/*.woff2'
+    ],
+    distBowerFontsFiles: [
+        './bower_components/fontawesome/**/*.eot',
+        './bower_components/fontawesome/**/*.ttf',
+        './bower_components/fontawesome/**/*.woff',
+        './bower_components/fontawesome/**/*.woff2'
+    ]
 };
 
 /**
@@ -172,7 +188,7 @@ gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'bower-as
         .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {
             ignorePath: 'dist'
         }))
-        .pipe(g.htmlmin(htmlminOpts))
+        .pipe(g.htmlmin(configuration.htmlminOpts))
         .pipe(gulp.dest('./dist/'));
 });
 
@@ -181,10 +197,10 @@ gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'bower-as
  * @return {[type]} [description]
  */
 gulp.task('release', ['dist'], function() {
-    return gulp.src('dist')
-        .pipe(tar('myapp.tar'))
+    return gulp.src('./dist')
+        .pipe(tar(bower.name + '.tar'))
         .pipe(gzip())
-        .pipe(gulp.dest('release'));
+        .pipe(gulp.dest('./release'));
 });
 
 
@@ -199,7 +215,7 @@ gulp.task('statics', function() {
         livereload: true,
         middleware: function() {
             return [(function() {
-                return proxy(proxyOptions);
+                return proxy(configuration.proxyOptions);
             })()];
         }
     });
@@ -298,32 +314,16 @@ function appFiles() {
  */
 function templateFiles(opt) {
     return gulp.src(['./src/app/**/*.html', '!./src/app/index.html'], opt)
-        .pipe(opt && opt.min ? g.htmlmin(htmlminOpts) : noop());
+        .pipe(opt && opt.min ? g.htmlmin(configuration.htmlminOpts) : noop());
 }
 
-var distBowerFileList = [
-            './bower_components/**/*.png',
-            './bower_components/**/*.gif',
-            './bower_components/**/*.svg',
-            './bower_components/**/*.jpg',
-            './bower_components/angular-ui-grid/**/*.eot',
-            './bower_components/angular-ui-grid/**/*.ttf',
-            './bower_components/angular-ui-grid/**/*.woff',
-            './bower_components/angular-ui-grid/**/*.woff2'
-        ];
-var distBowerFontsFiles =[
-            './bower_components/fontawesome/**/*.eot',
-            './bower_components/fontawesome/**/*.ttf',
-            './bower_components/fontawesome/**/*.woff',
-            './bower_components/fontawesome/**/*.woff2'
-        ];
 function distBowerAssets() {
-    gulp.src(distBowerFileList)
+    gulp.src(configuration.distBowerFileList)
         .pipe(flatten())
         .pipe(gulp.dest('./dist', {
             base: "*"
         }));
-    return gulp.src(distBowerFontsFiles)
+    return gulp.src(configuration.distBowerFontsFiles)
         .pipe(flatten())
         .pipe(gulp.dest('./dist/fonts', {
             base: "*"
