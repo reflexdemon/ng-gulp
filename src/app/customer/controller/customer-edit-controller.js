@@ -1,5 +1,5 @@
 angular
-    .module('ngGulp.customer')
+    .module('ng-gulp.customer')
     .controller('CustomerEditCtrl', ['$scope', '$location', '$routeParams', 'CustomerService', 'ngDialog',
         function($scope, $location, $routeParams, CustomerService, ngDialog) {
 

@@ -18,6 +18,7 @@ var gulp = require('gulp'),
     isWatching = false,
     proxy = require('proxy-middleware'),
     url = require('url'),
+    flatten = require('gulp-flatten'),
     connect = require('gulp-connect'),
     _ = require('lodash');
 
@@ -154,10 +155,15 @@ gulp.task('assets', function() {
         .pipe(gulp.dest('./dist/assets'));
 });
 
+gulp.task('bower-assets-dist', function() {
+    return distBowerAssets();
+});
+
+
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist'], function() {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'bower-assets-dist'], function() {
     return gulp.src('./src/app/index.html')
         .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {
             ignorePath: 'dist',
@@ -295,6 +301,35 @@ function templateFiles(opt) {
         .pipe(opt && opt.min ? g.htmlmin(htmlminOpts) : noop());
 }
 
+var distBowerFileList = [
+            './bower_components/**/*.png',
+            './bower_components/**/*.gif',
+            './bower_components/**/*.svg',
+            './bower_components/**/*.jpg',
+            './bower_components/angular-ui-grid/**/*.eot',
+            './bower_components/angular-ui-grid/**/*.ttf',
+            './bower_components/angular-ui-grid/**/*.woff',
+            './bower_components/angular-ui-grid/**/*.woff2'
+        ];
+var distBowerFontsFiles =[
+            './bower_components/fontawesome/**/*.eot',
+            './bower_components/fontawesome/**/*.ttf',
+            './bower_components/fontawesome/**/*.woff',
+            './bower_components/fontawesome/**/*.woff2'
+        ];
+function distBowerAssets() {
+    gulp.src(distBowerFileList)
+        .pipe(flatten())
+        .pipe(gulp.dest('./dist', {
+            base: "*"
+        }));
+    return gulp.src(distBowerFontsFiles)
+        .pipe(flatten())
+        .pipe(gulp.dest('./dist/fonts', {
+            base: "*"
+        }));
+}
+
 /**
  * Build AngularJS templates/partials
  */
@@ -302,7 +337,7 @@ function buildTemplates() {
     return lazypipe()
         .pipe(g.ngHtml2js, {
             moduleName: bower.name,
-            prefix: '/' + bower.name + '/',
+            // prefix: '/' + bower.name + '/',
             stripPrefix: '/src/app'
         })
         .pipe(g.concat, bower.name + '-templates.js')

@@ -1,4 +1,4 @@
-angular.module('ngGulp.todo', []).config(['$routeProvider',
+angular.module('ng-gulp.todo', []).config(['$routeProvider',
     function($routeProvider) {
         'use strict';
         $routeProvider

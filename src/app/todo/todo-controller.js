@@ -1,5 +1,5 @@
 angular
-    .module('ngGulp.todo')
+    .module('ng-gulp.todo')
     .controller('TodoCtrl', function($scope, $window) {
         'use strict';
         $scope.todos = JSON.parse($window.localStorage.getItem('todos') || '[]');

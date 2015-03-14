@@ -1,5 +1,5 @@
 angular
-    .module('ngGulp.customer')
+    .module('ng-gulp.customer')
     .controller('CustomerCtrl', ['$scope', '$location','CustomerService',
         function ($scope, $location, CustomerService) {
     'use strict';

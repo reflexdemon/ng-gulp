@@ -1,5 +1,5 @@
 angular
-  .module('ngGulp.customer').service('CustomerService', ['$http',
+  .module('ng-gulp.customer').service('CustomerService', ['$http',
       function($http) {
           'use strict';
 

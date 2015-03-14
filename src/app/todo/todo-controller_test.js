@@ -4,7 +4,7 @@ describe('TodoCtrl', function() {
     var todoCtrl,
         scope;
 
-    beforeEach(module('ngGulp'));
+    beforeEach(module('ng-gulp'));
 
     beforeEach(inject(function($injector) {
         scope = $injector.get('$rootScope');
