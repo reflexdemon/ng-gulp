@@ -321,12 +321,12 @@ function distBowerAssets() {
     gulp.src(configuration.distBowerFileList)
         .pipe(flatten())
         .pipe(gulp.dest('./dist', {
-            base: "*"
+            base: '*'
         }));
     return gulp.src(configuration.distBowerFontsFiles)
         .pipe(flatten())
         .pipe(gulp.dest('./dist/fonts', {
-            base: "*"
+            base: '*'
         }));
 }
 
