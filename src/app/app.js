@@ -3,7 +3,9 @@ angular.module('ng-gulp', [
     'ng-gulp.home',
     'ng-gulp.todo',
     'ng-gulp.customer',
-    'ng-gulp.heat'
+    'ng-gulp.heat',
+    'angulartics',
+    'angulartics.google.analytics'
 ])
     .config(['$routeProvider',
         function($routeProvider) {
