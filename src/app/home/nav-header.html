@@ -1,0 +1,24 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/home"><i class="fa fa-beer"></i> NG Gulp</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/home') }"><a href="#/home"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li class="dropdown">
+            <a href="#/module" ng-class="{ active: isActive('/module') }"  data-toggle="dropdown" role="button" aria-expanded="true"><i class="fa fa-magic"></i> Modules <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-class="{ active: isActive('/todo') }"><a href="#/todo"><i class="fa fa-bars"></i> TODO</a>
+                </li>
+                <li class="divider"></li>
+                <li ng-class="{ active: isActive('/heat') }"><a href="#/heat"><i class="fa fa-refresh fa-spin"></i> Temperature Conversion Utility</a>
+                </li>
+                <li ng-class="{ active: isActive('/customer') }"><a href="#/customer"><i class="fa fa-user"></i> Customer</a>
+                </li>
+            </ul>
+        </li>
+        <li ng-class="{ active: isActive('/stack') }"><a href="#/stack"><i class="fa fa-terminal"></i> Tech Stack</a>
+        <li class="dropdown-menu-right"><a href="https://github.com/reflexdemon/ng-gulp" target="_blank"><i class="fa fa-github-square"></i> GitHub</a></li>
+    </ul>
+</div>

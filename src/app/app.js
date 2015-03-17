@@ -10,11 +10,7 @@ angular.module('ng-gulp', [
     .config(['$routeProvider',
         function($routeProvider) {
             'use strict';
-            $routeProvider
-            .when('/home', {
-                controller: 'HomeCtrl',
-                templateUrl: 'home/home.html'
-            });
+
             //Default route
             $routeProvider.otherwise({
                 redirectTo: '/home'
