@@ -20,10 +20,10 @@ var gulp = require('gulp'),
     url = require('url'),
     flatten = require('gulp-flatten'),
     connect = require('gulp-connect'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    webserver = require('gulp-webserver');
 
 //Configure your proxy for integrating with services
-//
 var configuration = {
     proxyOptions: _.extend(url.parse('http://demo-venkatvp.rhcloud.com/services'), {
         route: '/services',
@@ -31,6 +31,16 @@ var configuration = {
             custom: 'My Custom Header'
         }
     }),
+    rootFolder : ['./.tmp', './.tmp/src/app', './src/app', './bower_components'],
+    proxies : [{
+                source: '/services',
+                target: 'http://demo-venkatvp.rhcloud.com/services',
+                options: {
+                    headers: {
+                        'ABC_HEADER': 'abc'
+                    }
+                }
+            }],
     htmlminOpts: {
         removeComments: true,
         collapseWhitespace: true,
@@ -210,7 +220,7 @@ gulp.task('release', ['dist'], function() {
  */
 gulp.task('statics', function() {
     connect.server({
-        root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components'],
+        root: configuration.rootFolder,
         port: 3000,
         livereload: true,
         middleware: function() {
@@ -221,12 +231,21 @@ gulp.task('statics', function() {
     });
 });
 
+gulp.task('webserver', function() {
+  gulp.src(configuration.rootFolder)
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      port : 3000,
+      proxies : configuration.proxies,
+    }));
+});
 
 /**
  * Watch
  */
 gulp.task('serve', ['watch']);
-gulp.task('watch', ['statics', 'default'], function() {
+gulp.task('watch', ['default', 'statics'], function() {
     isWatching = true;
     // Initiate livereload server:
     gulp.watch('./src/app/**/*.js', ['jshint']);

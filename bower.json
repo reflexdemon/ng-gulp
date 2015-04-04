@@ -28,7 +28,8 @@
     "fontawesome": "~4.3.0",
     "less": "~2.4.0",
     "angular-bootstrap-slider": "~0.1.1",
-    "angulartics": "~0.17.2"
+    "angulartics": "~0.17.2",
+    "MoltinSDK": "git@github.com:moltin/js-sdk.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.29"
