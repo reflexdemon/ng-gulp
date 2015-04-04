@@ -19,11 +19,11 @@
         <input type="text" class="form-control" id="age" placeholder="Age" ng-model="customer.age">
     </div>
 
-    <button class="btn btn-default" ng-click="back()"><i class="fa fa-undo"></i>
+    <button class="btn btn-default" ng-click="vm.back()"><i class="fa fa-undo"></i>
  Cancel</button>
-    <button class="btn btn-primary" ng-click="updateCustomer()"><i class="fa fa-floppy-o"></i>
+    <button class="btn btn-primary" ng-click="vm.updateCustomer()"><i class="fa fa-floppy-o"></i>
  Save</button>
-    <button class="btn btn-danger" ng-if="customer.id" ng-click="delete()"><i class="fa fa-trash-o"></i>
+    <button class="btn btn-danger" ng-if="customer.id" ng-click="vm.deleteRecord()"><i class="fa fa-trash-o"></i>
  Delete</button>
 
 </form>

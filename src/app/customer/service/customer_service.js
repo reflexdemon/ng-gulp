@@ -1,42 +1,57 @@
-angular
-  .module('ng-gulp.customer').service('CustomerService', ['$http',
-      function($http) {
-          'use strict';
+(function() {
+    'use strict';
+    angular
+        .module('ng-gulp.customer').service('CustomerService', CustomerService);
 
-          //REST service abstraction
+    /* @ngInject */
+    function CustomerService($http) {
 
-          //RESTful webservice base URL
-          var urlBase = '/services/customer';
+        //REST service abstraction
 
-          //Fetch all customers
-          this.getCustomers = function() {
-              return $http.get(urlBase);
-          };
+        //RESTful webservice base URL
+        var urlBase = '/services/customer';
 
-          //Fetch customer by ID
-          this.getCustomer = function(id) {
-              return $http.get(urlBase + '/' + id);
-          };
+        var service = {
+            getCustomers: getCustomers,
+            getCustomer: getCustomer,
+            insertCustomer: insertCustomer,
+            updateCustomer: updateCustomer,
+            save: save,
+            deleteCustomer: deleteCustomer
+        };
+        return service;
 
-          //Insert new customer
-          this.insertCustomer = function(cust) {
-              return $http.post(urlBase, cust);
-          };
+        ///////////////////
 
-          //Update Customer
-          this.updateCustomer = function(cust) {
-              return $http.put(urlBase + '/' + cust.id, cust);
-          };
+        //Fetch all customers
+        function getCustomers() {
+            return $http.get(urlBase);
+        }
 
-          //Abstracts save for insert vs update
-          this.save = function(cust) {
-            var operation = cust.id ? this.updateCustomer : this.insertCustomer;
+        //Fetch customer by ID
+        function getCustomer(id) {
+            return $http.get(urlBase + '/' + id);
+        }
+
+        //Insert new customer
+        function insertCustomer(cust) {
+            return $http.post(urlBase, cust);
+        }
+
+        //Update Customer
+        function updateCustomer(cust) {
+            return $http.put(urlBase + '/' + cust.id, cust);
+        }
+
+        //Abstracts save for insert vs update
+        function save(cust) {
+            var operation = cust.id ? updateCustomer : insertCustomer;
             return operation(cust);
-          };
+        }
 
-          //Delete customer record
-          this.deleteCustomer = function(id) {
-              return $http.delete(urlBase + '/' + id);
-          };
-      }
-  ]);
+        //Delete customer record
+        function deleteCustomer(id) {
+            return $http.delete(urlBase + '/' + id);
+        }
+    }
+})();

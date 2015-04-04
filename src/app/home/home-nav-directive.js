@@ -24,7 +24,7 @@ angular.module('ng-gulp.home').directive('navHeader', function() {
                 }
                 return active;
 
-            }
+            };
         }
-    }
+    };
 });
