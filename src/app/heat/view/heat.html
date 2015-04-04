@@ -11,13 +11,13 @@
                 <label for="fahrenheit">Fahrenheit</label>
                 <slider ng-model="heat.fahrenheit" min="testOptions.min" step="testOptions.step" max="testOptions.max" value="testOptions.value" change="f2c()"></slider>
                 <label>{{heat.fahrenheit}}</label>
-                <button type="button" class="btn btn-default" ng-click="f2c()">Fahrenheit to Celsius</button>
+                <button type="button" class="btn btn-default" ng-click="vm.f2c()">Fahrenheit to Celsius</button>
             </div>
             <div class="form-group">
                 <label for="celsius">Celsius</label>
                 <slider ng-model="heat.celsius" min="testOptions.min" step="testOptions.step" max="testOptions.max" value="testOptions.value" change="c2f()"></slider>
                 <label>{{heat.celsius}}</label>
-                <button type="button" class="btn btn-default" ng-click="c2f()">Celsius to Fahrenheit</button>
+                <button type="button" class="btn btn-default" ng-click="vm.c2f()">Celsius to Fahrenheit</button>
             </div>
         </form>
     </div>
