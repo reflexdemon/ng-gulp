@@ -30,7 +30,7 @@
                       if (!$scope.todos[i].isDone) {
                         todos.push($scope.todos[i]);
                       }
-                    };
+                    }
                     $scope.todos = todos;
                     $window.localStorage.setItem('todos', JSON.stringify(angular.copy($scope.todos)));
                 };
