@@ -221,6 +221,22 @@ gulp.task('statics', function() {
     });
 });
 
+/**
+ * Static dist server for testing production code.
+ */
+gulp.task('statics-dist', function() {
+    connect.server({
+        root: ['./dist'],
+        port: 4000,
+        livereload: true,
+        middleware: function() {
+            return [(function() {
+                return proxy(configuration.proxyOptions);
+            })()];
+        }
+    });
+});
+
 
 /**
  * Watch
