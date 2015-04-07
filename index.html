@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ng-gulp by reflexdemon</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ng-gulp</h1>
+        <p>This is a demo project to learn Angular and Gulp</p>
+
+        <p class="view"><a href="https://github.com/reflexdemon/ng-gulp">View the Project on GitHub <small>reflexdemon/ng-gulp</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/reflexdemon/ng-gulp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/reflexdemon/ng-gulp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/reflexdemon/ng-gulp">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="ng-gulp" class="anchor" href="#ng-gulp" aria-hidden="true"><span class="octicon octicon-link"></span></a>ng-gulp</h1>
+
+<h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>This is a project started as a scrachpad applicaiton to start wetting my hands on Angular JS and with my intrest growing day by day on this I felt like there is more to do and started deploying my application in the Cloud platform for me to playaround.</p>
+
+<p>The running version can be found at, <a href="http://demo-venkatvp.rhcloud.com">http://demo-venkatvp.rhcloud.com</a></p>
+
+<h2>
+<a id="demos" class="anchor" href="#demos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demos</h2>
+
+<ol>
+<li>TODO: This is a sampe application to mke use of browser's <code>localstorage</code> and maintain some persistant data.</li>
+<li>Temperature Conversion Utility: This is a module dedicated to demo RESTful service Angular JS fusion.</li>
+<li>Customer : This is a module that makes use of RESTFul webservice and demonstrate the CRUD opration using RESTful services.</li>
+</ol>
+
+<p>Please feel free to fork and suggest improvements.</p>
+
+<h2>
+<a id="onetime-setup" class="anchor" href="#onetime-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Onetime Setup</h2>
+
+<p>If you dont have <code>gulp</code> and <code>bower</code> installed globally before please do this.</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g gulp bower </pre></div>
+
+<p>This is required to be done if the <code>package.json</code> is updated antime.</p>
+
+<div class="highlight highlight-bash"><pre>npm install</pre></div>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<p>To start developing in the project run:</p>
+
+<div class="highlight highlight-bash"><pre>gulp serve</pre></div>
+
+<p>Then head to <code>http://localhost:3000</code> in your browser.</p>
+
+<p>The <code>serve</code> tasks starts a static file server, which serves the AngularJS application, and a watch task which watches all files for changes and lints, builds and injects them into the index.html accordingly.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>To run tests run:</p>
+
+<div class="highlight highlight-bash"><pre>gulp <span class="pl-c1">test</span></pre></div>
+
+<p><strong>Or</strong> first inject all test files into <code>karma.conf.js</code> with:</p>
+
+<div class="highlight highlight-bash"><pre>gulp karma-conf</pre></div>
+
+<p>Then you're able to run Karma directly. Example:</p>
+
+<div class="highlight highlight-bash"><pre>karma start --single-run</pre></div>
+
+<h2>
+<a id="production-ready-build---aka-dist" class="anchor" href="#production-ready-build---aka-dist" aria-hidden="true"><span class="octicon octicon-link"></span></a>Production ready build - a.k.a. dist</h2>
+
+<p>To make the app ready for deploy to production run:</p>
+
+<div class="highlight highlight-bash"><pre>gulp dist</pre></div>
+
+<p>Now there's a <code>./dist</code> folder with all scripts and stylesheets concatenated and minified, also third party libraries installed with bower will be concatenated and minified into <code>vendors.min.js</code> and <code>vendors.min.css</code> respectively.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/reflexdemon">reflexdemon</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-60801328-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
