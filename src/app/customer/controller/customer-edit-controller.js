@@ -21,7 +21,6 @@
         vm.updateCustomer = updateCustomer;
         vm.deleteRecord = deleteRecord;
         vm.deleteCustomer = deleteCustomer;
-        $scope.vm = vm;
 
         init();
 
