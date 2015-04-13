@@ -73,3 +73,11 @@ gulp dist
 
 Now there's a `./dist` folder with all scripts and stylesheets concatenated and minified, also third party libraries installed with bower will be concatenated and minified into `vendors.min.js` and `vendors.min.css` respectively.
 
+
+## Test production ready code
+
+To make the app ready for deploy to production run:
+
+```bash
+gulp serve-dist
+```

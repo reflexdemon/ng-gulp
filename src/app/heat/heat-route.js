@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ng-gulp.customer')
+        .module('ng-gulp.heat')
         .config(configure);
 
 
