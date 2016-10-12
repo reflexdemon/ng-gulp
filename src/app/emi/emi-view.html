@@ -1,0 +1,56 @@
+<h2>Equal Monthly Installments (EMI)</h2>
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="principal">Principal:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="principal" placeholder="Enter Principal" ng-model="emi.principal">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="rate">Rate:</label>
+    <div class="col-sm-10">
+      <input type="number" step="any" class="form-control" id="rate" placeholder="Enter Rate" ng-model="emi.rate">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="term">Term in Months:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="term" placeholder="Enter Term in months" ng-model="emi.months">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" ng-click="emi.calculate()">Calculate</button>
+      <button type="button" class="btn btn-default" ng-click="emi.clear()">Clear</button>
+    </div>
+  </div>
+</form>
+<span ng-if="emi.results">
+<h3>Results</h3>
+<span id="exportable">
+<table class="table table-striped table-condensed table-hover header-fixed">
+  <thead>
+  <tr>
+    <th>Month</th>
+    <th>Monthly Payment</th>
+    <th>Interest per month</th>
+    <th>Payment towards Principal</th>
+    <th>Principal Outstanding</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="payment in emi.results.paymentSchedule track by payment.month">
+    <td>{{payment.month}}</td>
+    <td>{{emi.results.monthlyPayments}}</td>
+    <td>{{payment.intPerMonth}}</td>
+    <td>{{payment.principal}}</td>
+    <td>{{payment.currentOutstanding}}</td>
+  </tr>
+  </tbody>
+</table>
+  </span>
+  <button type="button" class="btn btn-success" ng-click="emi.exportToExcel()">
+    <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export To Excel
+  </button>
+</span>

@@ -7,6 +7,7 @@
         'ng-gulp.todo',
         'ng-gulp.customer',
         'ng-gulp.heat',
+        'ng-gulp.emi',
         'angulartics',
         'angulartics.google.analytics'
     ]);
