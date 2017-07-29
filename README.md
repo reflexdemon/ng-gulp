@@ -1,6 +1,8 @@
 ng-gulp
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/reflexdemon/ng-gulp.svg)](https://greenkeeper.io/)
+
 GitHub pages : [http://reflexdemon.github.io/ng-gulp](http://reflexdemon.github.io/ng-gulp)
 
 #Introduction
